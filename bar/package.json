@@ -1,0 +1,11 @@
+{
+  "name": "Aiko",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "author": "hal",
+  "license": "WTFPL",
+  "devDependencies": {
+    "electron": "^1.4.8"
+  }
+}
