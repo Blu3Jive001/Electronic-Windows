@@ -1,0 +1,216 @@
+@font-face {
+  font-family: 'Mix';
+  src: local('Noto Sans Shavian');
+  unicode-range: U+10450-1047F;
+}
+
+@font-face {
+  font-family: 'Mix';
+  src: local("Noto Sans JP Medium");
+  unicode-range: U+0370-052F, U+0040, U+2E80-9FFF;
+}
+
+body {
+	padding: 0px;
+	margin: 0px;
+	overflow: hidden;
+	font-size: var(--font-size);
+	font-family: var(--font-family);
+	user-select: none;
+}
+
+:host(music-widget) {
+	display: flex;
+	height: calc(var(--bar-height) - 16px);
+	line-height: calc(var(--bar-height) - 16px);
+	border-radius: 6px;
+	background: var(--widget-background-color);
+    text-align: center;
+    color: var(--widget-foreground-color);
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+:host(music-widget.progressbar) { padding-right: 6.3px; }
+
+:host(music-widget) .scrollbox {
+	overflow: hidden;
+	max-width: 150px;
+	padding: 0px 8px;
+    position: relative;
+
+
+	-webkit-mask-position: left, center, right;
+	-webkit-mask-origin: padding-box;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-size: 5px, calc(100% - 9px), 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	box-sizing: border-box;
+	height: 100%;
+	-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='36'><linearGradient id='gradient'><stop offset='10%' stop-color='%2300000000'/><stop offset='90%' stop-color='%23fff'/> </linearGradient><rect fill='url(%23gradient)' x='0' y='0' width='100%' height='100%'/></svg>"),
+	url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='36'><rect fill='%23fff' x='0' y='0' width='100%' height='100%'/></svg>"),
+	url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='36'><linearGradient id='gradient'><stop offset='10%' stop-color='%23fff'/><stop offset='90%' stop-color='%2300000000'/> </linearGradient><rect fill='url(%23gradient)' x='0' y='0' width='100%' height='100%'/></svg>");
+}
+
+:host(music-widget) .musicfield {
+	white-space: nowrap;
+}
+
+:host(music-widget) #trackprogress {
+	display: none;
+	color: #1abc9c;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: 1.3px;
+	min-width: 21px;
+    width: 21px;
+    height: 21px;
+}
+
+:host(music-widget.progressbar) #trackprogress {
+	display: block;
+}
+
+/*
+<svg id="trackprogress" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1">
+	<circle cx="0.5" cy="0.5" r="0.2" style="stroke: currentColor; stroke-width: 0.15; stroke-opacity: 0.5; fill: none;" />
+	<circle id="progressbar" cx="0.5" cy="0.5" r="0.2" style="stroke: currentColor; stroke-width: 0.15; fill: none; transform: rotate(-90deg); transform-origin: center; stroke-dasharray: 0.1 4;" />
+</svg>
+*/
+
+:host(music-widget) #backgroundcircle {
+	stroke: var(--track-progress-background-color);
+	stroke-width: 0.15;
+/*	stroke-opacity: 0.5;	*/
+	fill: none;
+}
+
+:host(music-widget) #progresscircle {
+	stroke: var(--track-progress-color);
+	stroke-width: 0.15;
+	fill: none;
+	transform: rotate(-90deg);
+	transform-origin: center;
+/*	stroke-dasharray: 0.1 4;*/
+}
+
+#container {
+    width: 200px;
+    height: 260px;
+    margin: 10px;
+    border-radius: 2px;
+    filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.2));
+    background: rgba(0, 0, 0, 0);
+    overflow: hidden;
+}
+
+#blurbox {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#covercontainer {
+	height: 200px;
+	width: 200px;
+	filter: blur(10px);
+	transform: scale(1.5);
+	background-position: center center;
+	background-size: 200px;
+}
+
+#cover {
+	max-width: 200px;
+	max-height: 200px;
+	display: block;
+	-webkit-user-drag: none;
+}
+
+#info {
+	-webkit-app-region: drag;
+	isolation: isolate;
+	background: #F3F3F4;
+	width: 100%;
+	height: 60px;
+	display: flex;
+	/* line-height: 15px; */
+	flex-direction: column;
+}
+
+#progressbardiv {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	box-sizing: border-box;
+	padding: 0px 4px;
+}
+
+#elapsedtime, #tracklength {
+	font-size: 7.5px;
+	height: 9px;
+	margin: 8px 0px;
+	width: 34px;
+	text-align: center;
+	color: #919090;
+}
+
+#progressbar {background: #D0CFCF;flex-grow: 1;border-radius: 1.3333px;height: 2.6666px;margin: auto;}
+
+#elapsedbar {
+    border-left: solid #727171 1.3333px;
+    border-right: solid #727171 1.3333px;
+    border-radius: 1.3333px;
+    height: 100%;
+    width: 0%;
+    background: #727171;
+}
+
+#title, #artistalbum {
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	padding: 0px 10px; 
+}
+
+#title {
+	font-size: 11px;
+	line-height: 15px;
+	color: #090909;
+}
+
+#artistalbum {
+	font-size: 9px;
+	color: #7D7D7F;
+	line-height: 12px;
+}
+
+#blurbox:hover > #playpausebutton {
+	display: block;
+}
+
+#playpausebutton {
+	display: none;
+	margin: auto;
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 20px;
+	backdrop-filter: blur(3px);
+}
+
+#icon {
+	width: 100%;
+	height: 100%;
+	-webkit-mask-image: url(pause-24px.svg);
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	-webkit-mask-size: 20px;
+	background-color: #fff;
+}

@@ -1,0 +1,239 @@
+@font-face {
+  font-family: 'Mix';
+  src: local('Noto Sans Shavian');
+  unicode-range: U+10450-1047F;
+}
+
+@font-face {
+  font-family: 'Mix';
+  src: local("Noto Sans JP Medium");
+  unicode-range: U+0370-052F, U+0040, U+2E80-9FFF;
+}
+/*
+BCC1C9
+DFE1E8
+*/
+body {
+	padding: 0px;
+	margin: 0px;
+	overflow: hidden;
+	font-size: var(--font-size);
+	font-family: var(--font-family);
+	user-select: none;
+}
+
+#container {
+	-webkit-app-region: drag;
+	width: 180px;
+	height: 208px;
+	margin: 10px;
+	border-radius: 2px;
+	filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.2));
+	background: #252A33;
+	overflow: hidden;
+	padding: 10px;
+	display: flex;
+}
+
+.header {
+	display: flex;
+}
+
+#date, #heading {
+	height: 15px;
+	font-size: 11px;
+	line-height: 15px;
+	color: #DFE1E8;
+	margin: 16px 0px 16px 0px;
+}
+
+#date {
+	/* float: left; */
+	-webkit-app-region: no-drag;
+	cursor: pointer;
+	/* width: 148px; */
+	text-align: center;
+	flex-grow: 1;
+}
+
+#heading {
+	flex-grow: 1;
+}
+
+#cal {
+	clear: both;
+	width: 196px;
+	margin: 0px -8px -8px -8px;
+	overflow: auto;
+}
+
+.day {
+	float: left;
+	width: 28px;
+	height: 28px;
+	text-align: center;
+	line-height: 28px;
+	font-size: 9px;
+	color: #BCC1C9;
+	-webkit-app-region: no-drag;
+	cursor: pointer;
+}
+
+.day.othermonth {
+	opacity: 0.5;
+	-webkit-app-region: drag;
+	cursor: default;
+
+}
+
+.day.selected {
+	background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28'><rect x='2' y='2' width='24px' height='24px' rx='5' fill='%232B303B'/></svg>");
+	color: #DFE1E8 !important;
+}
+.day.interest {
+	background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28'><rect x='2' y='2' width='24px' height='24px' rx='5' fill='%232B303B80'/></svg>");
+	color: #DFE1E8;
+}
+
+.day.current:not(.selected) {
+	background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28'><rect x='2' y='2' width='24px' height='24px' rx='5' fill='%232B303B80'/></svg>");
+	color: #BCC1C9 !important;
+}
+
+
+
+#prevbutton,
+#nextbutton,
+#closebutton {
+	/* float: left; */
+	margin: 16px 0px 16px 0px;
+	cursor: pointer;
+	-webkit-app-region: no-drag;
+	display: block;
+	width: 12px;
+	height: 12px;
+	padding: 2px;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	-webkit-mask-size: 20px;
+	background: #BCC1C9;
+}
+
+#prevbutton { -webkit-mask-image: url(res/arrow_left-24px.svg); }
+#nextbutton { -webkit-mask-image: url(res/arrow_right-24px.svg); }
+#closebutton {
+	-webkit-mask-size: 12px;
+	-webkit-mask-image: url(res/cancel-24px.svg);
+}
+
+
+#aside {
+	margin-left: 18px;
+	flex-grow: 1;
+}
+
+#label:not(.open) ~ #aside { display: none; }
+
+#reminderlist {
+	overflow-y: scroll;
+	margin-right: -2px;
+	-webkit-app-region: no-drag;
+	max-height: 160px;
+}
+
+.reminder {
+	overflow: auto;
+	clear: both;
+	-webkit-app-region: no-drag;
+	display: flex;
+}
+
+.reminder:hover { background-color: rgba(255, 255, 255, 0.05); }
+
+.remindertext,
+.remindertime {
+	font-size: 10px;
+	line-height: 16px;
+	/* padding: 8px 0px; */
+	word-break: break-word;
+}
+
+.reminder.checked > .remindertext,
+.reminder.checked > .remindertime { text-decoration: line-through; }
+
+.remindertext {
+	flex-grow: 1;
+	color: #DFE1E8;
+}
+
+.remindertime {
+	width: 40px;
+	text-align: right;
+	color: #BCC1C9;
+}
+
+.removebutton,
+#addbutton {
+	height: 16px;
+	width: 16px;
+	display: block;
+	overflow: auto;
+	margin-left: 8px;
+	-webkit-app-region: no-drag;
+	cursor: pointer;
+	background: #BCC1C9;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	-webkit-mask-size: 12px;
+}
+
+.removebutton { -webkit-mask-image: url(res/remove-24px.svg); }
+#addbutton { -webkit-mask-image: url(res/add-24px.svg); }
+
+#newreminder {
+	overflow: auto;
+	clear: both;
+	display: flex;
+}
+
+#newtext,
+#newtime {
+	font-size: 10px;
+	font-family: var(--font-family);
+	background-color: rgba(0, 0, 0, 0);
+	line-height: 16px;
+	height: 16px;
+	padding: 0px;
+	outline: none;
+	border: none;
+	word-break: break-word;
+	-webkit-app-region: no-drag;
+	resize: none;
+}
+
+#newtext::-webkit-scrollbar,
+#newtime::-webkit-scrollbar,
+#reminderlist::-webkit-scrollbar {
+	width: 2px;
+	height: 2px;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+#newtext::-webkit-scrollbar-thumb,
+#newtime::-webkit-scrollbar-thumb,
+#reminderlist::-webkit-scrollbar-thumb {
+	background-color: rgba(255, 255, 255, 0.2);
+	width: 0px;
+	height: 0px;
+}
+
+#newtext {
+	color: #DFE1E8;
+	flex-grow: 1;
+}
+
+#newtime {
+	width: 40px;
+	color: #BCC1C9;
+	text-align: right;
+}

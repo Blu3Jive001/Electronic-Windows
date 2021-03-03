@@ -1,0 +1,11 @@
+{
+  "name": "Electronic",
+  "version": "1.0.1",
+  "description": "",
+  "main": "main.js",
+  "author": "BlueJive",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^11.3.0"
+  }
+}

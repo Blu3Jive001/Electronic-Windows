@@ -1,0 +1,33 @@
+:host {
+	display: block;
+	width: 30px;
+	height: 100%;
+    text-align: center;
+/*    font-family: "Noto Sans Shavian"; */
+    font-weight: bold;
+    position: relative;
+    color: var(--workspace-foreground-color);
+	background: var(--widget-background-color);
+    min-width: 22px;
+	flex-shrink: 0;
+	border-radius: 6px;
+}
+
+:host(.active) {
+	color: var(--workspace-active-foreground-color);
+}
+
+.activeindicator {
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	width: 4px;
+	height: 4px;
+	background-color: var(--active-indicator-color);
+	border-radius: 6px;
+	display: none;
+}
+
+:host-context(.populated) > .activeindicator {
+	display: block;
+}
