@@ -1,0 +1,11 @@
+{
+  "name": "Weather",
+  "version": "1.0.0",
+  "description": "A weather widget",
+  "main": "main.js",
+  "author": "BlueJive",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.4.8"
+  }
+}

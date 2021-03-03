@@ -1,0 +1,58 @@
+body {
+	padding: 0px;
+	margin: 0px;
+	font-size: 12px;
+	font-family: "Gotham Rounded";
+	overflow: hidden;
+	user-select: none;
+}
+
+#container {
+	-webkit-app-region: drag;
+	padding: 30px;
+	margin: 0px;
+	font-size: 12px;
+	font-family: "Gotham Rounded";
+	overflow: hidden;
+	background-color: #ccc;
+	margin: 10px;
+	width: calc(100% - 20px);
+	height: calc(100vh - 20px);
+	box-sizing: border-box;
+	border-radius: 2px;
+	filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.2));
+}
+
+#weathericon {
+	vertical-align: middle;
+	display: inline;
+	width: 40px;
+	height: 40px;
+	filter: drop-shadow( 0px 0.5px 0px rgba(0, 0, 0, 0.2) );
+	padding-right: 10px;
+}
+
+#conditiontext {
+	vertical-align: middle;
+	font-size: 24px;
+	color: #fff;
+	text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+}
+
+#temp {
+	font-size: 48px;
+	color: #fff;
+	text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+	position: absolute;
+	left: 30px;
+	bottom: 20px;
+}
+
+#place {
+	font-size: 18px;
+	color: rgba(255, 255, 255, 0.7);
+	text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+	position: absolute;
+	right: 30px;
+	bottom: 27.5px;
+}
